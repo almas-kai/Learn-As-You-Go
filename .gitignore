@@ -1,55 +1,51 @@
-# *** DOTNET SECTION ***
-# *** DOTNET SECTION ***
-# *** DOTNET SECTION ***
+# ASP.NET Core / .NET
+LearnAsYouGo/bin/
+LearnAsYouGo/obj/
+LearnAsYouGo/*.user
+LearnAsYouGo/*.suo
+LearnAsYouGo/*.userosscache
 
-**/bin
-**/obj
-**/.vscode
+# Angular / Node
+learn-as-you-go/dist/
+learn-as-you-go/tmp/
+learn-as-you-go/out-tsc/
+learn-as-you-go/.bazel-out/
+learn-as-you-go/.angular/cache/
+learn-as-you-go/node_modules/
+learn-as-you-go/npm-debug.log*
+learn-as-you-go/yarn-error.log*
 
-# *** ANGULAR SECTION ***
-# *** ANGULAR SECTION ***
-# *** ANGULAR SECTION ***
+# IDEs / Editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Compiled output
-learn-as-you-go/dist
-learn-as-you-go/tmp
-learn-as-you-go/out-tsc
-learn-as-you-go/bazel-out
-learn-as-you-go/.angular/*
-
-# Node
-learn-as-you-go/node_modules/**
-learn-as-you-go/npm-debug.log
-learn-as-you-go/yarn-error.log
-
-# IDEs and editors
-learn-as-you-go/.idea/
-learn-as-you-go/.project
-learn-as-you-go/.classpath
-learn-as-you-go/.c9/
-learn-as-you-go/*.launch
-learn-as-you-go/.settings/
-learn-as-you-go/*.sublime-workspace
-
-# Visual Studio Code
+# VS Code
 learn-as-you-go/.vscode/*
-learn-as-you-go/!.vscode/settings.json
-learn-as-you-go/!.vscode/tasks.json
-learn-as-you-go/!.vscode/launch.json
-learn-as-you-go/!.vscode/extensions.json
-learn-as-you-go/!.vscode/mcp.json
-learn-as-you-go/.history/*
+LearnAsYouGo/.vscode/*
+!learn-as-you-go/.vscode/settings.json
+!learn-as-you-go/.vscode/tasks.json
+!learn-as-you-go/.vscode/launch.json
+!learn-as-you-go/.vscode/extensions.json
+!LearnAsYouGo/.vscode/settings.json
+!LearnAsYouGo/.vscode/tasks.json
+!LearnAsYouGo/.vscode/launch.json
+!LearnAsYouGo/.vscode/extensions.json
+**/.history/
 
-# Miscellaneous
-learn-as-you-go/.angular/cache
+
+# Misc / system
 learn-as-you-go/.sass-cache/
 learn-as-you-go/connect.lock
-learn-as-you-go/coverage
+learn-as-you-go/coverage/
 learn-as-you-go/libpeerconnection.log
 learn-as-you-go/testem.log
-learn-as-you-go/typings
+learn-as-you-go/typings/
 learn-as-you-go/__screenshots__/
 
-# System files
-learn-as-you-go/.DS_Store
-learn-as-you-go/Thumbs.db
+.DS_Store
+Thumbs.db
