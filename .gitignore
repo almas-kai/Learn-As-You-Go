@@ -1,51 +1,158 @@
+# ==========================
 # ASP.NET Core / .NET
+# ==========================
 LearnAsYouGo/bin/
 LearnAsYouGo/obj/
 LearnAsYouGo/*.user
 LearnAsYouGo/*.suo
 LearnAsYouGo/*.userosscache
+LearnAsYouGo/.vs/
+LearnAsYouGo/publish/
+LearnAsYouGo/*.nupkg
+LearnAsYouGo/packages/
+LearnAsYouGo/project.lock.json
+LearnAsYouGo/project.fragment.lock.json
+LearnAsYouGo/artifacts/
+LearnAsYouGo/ScaffoldingReadMe.txt
+LearnAsYouGo/StyleCopReport.xml
+LearnAsYouGo/_ReSharper*/
+LearnAsYouGo/*.DotSettings.user
+LearnAsYouGo/_TeamCity*/
+LearnAsYouGo/coverage*.*
+LearnAsYouGo/*.coverage*
+LearnAsYouGo/_NCrunch_*
+LearnAsYouGo/*.mm.*
+LearnAsYouGo/AutoTest.Net/
+LearnAsYouGo/*.log
+LearnAsYouGo/Generated\ Files/
+LearnAsYouGo/BenchmarkDotNet.Artifacts/
+LearnAsYouGo/Generated_Code/
+LearnAsYouGo/_UpgradeReport_Files/
+LearnAsYouGo/Backup*/
+LearnAsYouGo/UpgradeLog*.*
+LearnAsYouGo/ServiceFabricBackup/
+LearnAsYouGo/FakesAssemblies/
+LearnAsYouGo/*.GhostDoc.xml
+LearnAsYouGo/.paket/
+LearnAsYouGo/.fake/
+LearnAsYouGo/OpenCover/
+LearnAsYouGo/ASALocalRun/
+LearnAsYouGo/*.binlog
+LearnAsYouGo/.mfractor/
+LearnAsYouGo/healthchecksdb/
+LearnAsYouGo/MigrationBackup/
+LearnAsYouGo/.ionide/
+LearnAsYouGo/FodyWeavers.xsd
 
-# Angular / Node
+# ==========================
+# Angular / Node.js
+# ==========================
+learn-as-you-go/node_modules/
 learn-as-you-go/dist/
 learn-as-you-go/tmp/
 learn-as-you-go/out-tsc/
-learn-as-you-go/.bazel-out/
 learn-as-you-go/.angular/cache/
-learn-as-you-go/node_modules/
+learn-as-you-go/.bazel-out/
 learn-as-you-go/npm-debug.log*
 learn-as-you-go/yarn-error.log*
+learn-as-you-go/*.tsbuildinfo
+learn-as-you-go/coverage/
+learn-as-you-go/typings/
+learn-as-you-go/__screenshots__/
+learn-as-you-go/.env
+learn-as-you-go/.local
+learn-as-you-go/.sass-cache/
+learn-as-you-go/connect.lock
+learn-as-you-go/libpeerconnection.log
+learn-as-you-go/testem.log
 
+# ==========================
 # IDEs / Editors
+# ==========================
 .idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/**/replstate.xml
+.idea/**/sonarlint/
+.idea/**/caches/build_file_checksums.ser
+.idea/httpRequests/
+.idea_modules/
+*.iws
+*.ipr
+*.iml
+out/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# VS Code
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+**/.history/
+
+# ==========================
+# System / Misc
+# ==========================
+**/.DS_Store
+**/Thumbs.db
+*.code-workspace
+*.launch
 .project
 .classpath
 .c9/
-*.launch
 .settings/
 *.sublime-workspace
-
-# VS Code
-learn-as-you-go/.vscode/*
-LearnAsYouGo/.vscode/*
-!learn-as-you-go/.vscode/settings.json
-!learn-as-you-go/.vscode/tasks.json
-!learn-as-you-go/.vscode/launch.json
-!learn-as-you-go/.vscode/extensions.json
-!LearnAsYouGo/.vscode/settings.json
-!LearnAsYouGo/.vscode/tasks.json
-!LearnAsYouGo/.vscode/launch.json
-!LearnAsYouGo/.vscode/extensions.json
-**/.history/
-
-
-# Misc / system
-learn-as-you-go/.sass-cache/
-learn-as-you-go/connect.lock
-learn-as-you-go/coverage/
-learn-as-you-go/libpeerconnection.log
-learn-as-you-go/testem.log
-learn-as-you-go/typings/
-learn-as-you-go/__screenshots__/
-
-.DS_Store
-Thumbs.db
+*.rsuser
+*.userprefs
+mono_crash.*
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+*.plg
+*.opt
+*.vbw
+*.vbp
+*.dsw
+*.dsp
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+*.pyc
+__pycache__/
+*.json
+*.props
+*.targets
+*.cache
+*.user
