@@ -15,6 +15,8 @@
     <Folder Include="CQRS\" />
     <Folder Include="Services\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
 </Project>

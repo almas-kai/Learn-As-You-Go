@@ -12,6 +12,14 @@
 
   <ItemGroup>
     <Folder Include="Configurations\" />
+    <Folder Include="Context\" />
+    <Folder Include="Extentions\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Options\" />
+    <Folder Include="Repositiories\" />
+    <Folder Include="Seeders\" />
+    <Folder Include="Specifications\" />
+    <Folder Include="UnitOfWork\" />
   </ItemGroup>
 
 </Project>
