@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -17,11 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Infrastructure\Extention\" />
     <Folder Include="Infrastructure\Validators\" />
-    <Folder Include="Infrastructure\Middlewares\" />
-    <Folder Include="Models\Error\" />
-    <Folder Include="Models\Response\" />
   </ItemGroup>
 
 </Project>

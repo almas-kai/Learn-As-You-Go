@@ -1,3 +1,5 @@
+using Api.Infrastructure.Extention;
+
 namespace Api;
 
 public class Program
@@ -18,7 +20,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-
+        app.UseGlobalExceptionHandling();
         app.UseAuthorization();
 
         app.Run();
