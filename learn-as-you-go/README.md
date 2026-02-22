@@ -9,3 +9,5 @@ To install necessary packages run `npm install`.
 To run the app use `ng serve`.
 
 To run tests use `ng test`.
+
+To generate some components/services/pipes and so on use `ng generate`.
