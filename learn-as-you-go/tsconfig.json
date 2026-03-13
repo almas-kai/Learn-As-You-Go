@@ -21,6 +21,9 @@
       ],
       "@home-feature/*": [
         "src/app/features/home/*"
+      ],
+      "@environment": [
+        "src/app/environments/environment"
       ]
     }
   },
