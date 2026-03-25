@@ -21,6 +21,11 @@ public class Program
 
         app.UseHttpsRedirection();
         app.UseGlobalExceptionHandling();
+        app.UseRouting();
+
+        app.UseCors();  
+
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.Run();

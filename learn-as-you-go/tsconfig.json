@@ -22,6 +22,9 @@
       "@home-feature/*": [
         "src/app/features/home/*"
       ],
+      "@public/*": [
+        "public/*"
+      ],
       "@environment": [
         "src/app/environments/environment"
       ]
