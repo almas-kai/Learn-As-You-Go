@@ -24,6 +24,9 @@
       ],
       "@public/*": [
         "public/*"
+      ],
+      "@environment": [
+        "src/app/environments/environment"
       ]
     }
   },
