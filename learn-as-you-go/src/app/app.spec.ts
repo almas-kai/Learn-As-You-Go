@@ -1,45 +1,39 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
-import{ vi } from 'vitest';
-import { TranslateService } from '@ngx-translate/core';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SUPPORTED_LANGUAGES, SupportedLanguageCode } from '@public/i18n/supported-languages';
-
-const translateServiceMock = {
-  addLangs: vi.fn(),
-  getBrowserLang: vi.fn(),
-  use: vi.fn()
-};
 
 describe(App.name, () => {
   let fixture: ComponentFixture<App>;
+  let translate: TranslateService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
-      providers: [
-        {
-          provide: TranslateService,
-          useValue: translateServiceMock
-        }
+      imports: [
+        App,
+        TranslateModule.forRoot()
       ]
     }).compileComponents();
+
+    translate = TestBed.inject(TranslateService);
+    vi.spyOn(translate, 'addLangs');
+    vi.spyOn(translate, 'use');
   });
 
   it('should use browser language if supported', async () => {
     const prefferedLanguage: SupportedLanguageCode = 'ru';
 
-    translateServiceMock.getBrowserLang
-      .mockReturnValue(prefferedLanguage)
+    vi.spyOn(translate, 'getBrowserLang')
+      .mockReturnValue(prefferedLanguage);
 
     fixture = TestBed.createComponent(App);
     await fixture.whenStable();
 
-    expect(translateServiceMock.addLangs)
+    expect(translate.addLangs)
       .toHaveBeenCalledWith(Object.keys(SUPPORTED_LANGUAGES));
 
-    expect(translateServiceMock.getBrowserLang)
-      .toHaveReturnedWith(prefferedLanguage);
-
-    expect(translateServiceMock.use)
+    expect(translate.use)
       .toHaveBeenCalledWith(prefferedLanguage);
   });
 
@@ -47,19 +41,16 @@ describe(App.name, () => {
     const unsupportedLanguage = 'fake-language-code';
     const fallbackLanguage: SupportedLanguageCode = 'en';
 
-    translateServiceMock.getBrowserLang
-      .mockReturnValue(unsupportedLanguage)
+    vi.spyOn(translate, 'getBrowserLang')
+      .mockReturnValue(unsupportedLanguage);
 
     fixture = TestBed.createComponent(App);
     await fixture.whenStable();
 
-    expect(translateServiceMock.addLangs)
+    expect(translate.addLangs)
       .toHaveBeenCalledWith(Object.keys(SUPPORTED_LANGUAGES));
 
-    expect(translateServiceMock.getBrowserLang)
-      .toHaveReturnedWith(unsupportedLanguage);
-
-    expect(translateServiceMock.use)
+    expect(translate.use)
       .toHaveBeenCalledWith(fallbackLanguage);
   });
 });

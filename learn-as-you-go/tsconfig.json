@@ -14,19 +14,18 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "baseUrl": "./",
     "paths": {
       "@layout-components/*": [
-        "src/app/shared/components/layout/*"
+        "./src/app/shared/components/layout/*"
       ],
       "@home-feature/*": [
-        "src/app/features/home/*"
+        "./src/app/features/home/*"
       ],
       "@public/*": [
-        "public/*"
+        "./public/*"
       ],
       "@environment": [
-        "src/app/environments/environment"
+        "./src/app/environments/environment"
       ]
     }
   },

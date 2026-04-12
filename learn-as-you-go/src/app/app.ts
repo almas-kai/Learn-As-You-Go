@@ -1,19 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from '@layout-components/footer/footer';
-import { Header } from '@layout-components/header/header';
 import { TranslateService } from '@ngx-translate/core';
 import { SUPPORTED_LANGUAGES } from '@public/i18n/supported-languages';
+import { SideBar } from '@layout-components/side-bar/side-bar';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    Header,
-    Footer
+    SideBar
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
