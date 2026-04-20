@@ -1,12 +1,14 @@
-using Api.Infrastructure.Extention;
+using Api.Infrastructure.Extensions;
 
 namespace Api;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddDefaultCors(builder.Configuration);
 
         builder.Services.AddAuthorization();
 

@@ -1,8 +1,8 @@
 # ==========================
 # ASP.NET Core / .NET
 # ==========================
-LearnAsYouGo/bin/
-LearnAsYouGo/obj/
+LearnAsYouGo/*/bin/
+LearnAsYouGo/*/obj/
 LearnAsYouGo/*.user
 LearnAsYouGo/*.suo
 LearnAsYouGo/*.userosscache
