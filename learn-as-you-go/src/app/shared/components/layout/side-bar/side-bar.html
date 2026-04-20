@@ -1,0 +1,29 @@
+@let isMenuExpanded = isExpanded();
+
+<nav
+  class="main-navigation"
+  [aria-label]="'side-bar.main-navigation' | translate"
+>
+  <div class="top-nav">
+    <app-dynamic-button
+      [isExtended]="isMenuExpanded"
+      iconName="menu"
+      [labelKey]="isMenuExpanded ? 'side-bar.collapse-menu' : 'side-bar.expand-menu'"
+      (activate)="toggleMenu()"
+    />
+
+    <app-dynamic-button
+      [isExtended]="isMenuExpanded"
+      iconName="bookmark_stacks"
+      labelKey="side-bar.saved-articles"
+    />
+  </div>
+
+  <div class="bottom-nav">
+    <app-dynamic-button
+      [isExtended]="isMenuExpanded"
+      iconName="settings"
+      labelKey="side-bar.open-settings"
+    />
+  </div>
+</nav>

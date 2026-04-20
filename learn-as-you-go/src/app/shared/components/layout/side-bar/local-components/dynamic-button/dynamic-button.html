@@ -1,0 +1,21 @@
+@if (isExtended()) {
+  <button
+    matButton
+    [aria-label]="labelKey() | translate"
+    [matTooltip]="labelKey() | translate"
+    (click)="onClick()"
+  >
+    <mat-icon> {{ iconName() }} </mat-icon>
+    {{ labelKey() | translate }}
+  </button>
+}
+@else {
+  <button
+    matIconButton
+    [aria-label]="labelKey() | translate"
+    [matTooltip]="labelKey() | translate"
+    (click)="onClick()"
+  >
+    <mat-icon> {{ iconName() }} </mat-icon>
+  </button>
+}
