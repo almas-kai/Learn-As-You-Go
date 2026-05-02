@@ -16,6 +16,6 @@ The project is used to create a backend-end side of the webapp. To learn more ab
 
 Secrets are set at the project level. We should set it inside of the `Api` layer, because this layer is responsible for startup. It reads the configs at startup.
 
-Use `dotnet user-secrets init` (if `.csproj` does not contain user-secret id section), then `dotnet user-secrets set "ConnectionStrings:Default" "Host=localhost;Database=LearnAsYouGo;Username=psql;Password=YourPassword"`.
+Use `dotnet user-secrets init` (if `.csproj` does not contain user-secret id section), then `dotnet user-secrets set "ConnectionStrings:Default" "Host=localhost;Database=LearnAsYouGo;Username=postgres;Password=YourPassword"`.
 
 Please note that the name `ConnectionStrings:Default` is used later.
