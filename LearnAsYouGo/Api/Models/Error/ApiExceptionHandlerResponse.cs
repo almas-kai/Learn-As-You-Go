@@ -2,5 +2,5 @@
 
 namespace Api.Models.Error;
 
-public record ApiExceptionHandlerResponse(int Status, ApiResponse Result);
+internal record ApiExceptionHandlerResponse(int Status, ApiResponse Result);
 

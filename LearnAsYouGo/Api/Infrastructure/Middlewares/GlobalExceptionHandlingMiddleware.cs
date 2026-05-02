@@ -4,7 +4,7 @@ using Api.Infrastructure.Helpers;
 
 namespace Api.Infrastructure.Middlewares;
 
-public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
+internal class GlobalExceptionHandlingMiddleware(RequestDelegate next)
 {
     public async Task Invoke(HttpContext context)
     {
