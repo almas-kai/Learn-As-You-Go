@@ -2,7 +2,7 @@ using NettoRetail.Infrastructure.Options;
 
 namespace Api.Infrastructure.Extensions;
 
-public static class CorsExtensions
+internal static class CorsExtensions
 {
     public static IServiceCollection AddDefaultCors(this IServiceCollection services, IConfiguration configuration)
     {

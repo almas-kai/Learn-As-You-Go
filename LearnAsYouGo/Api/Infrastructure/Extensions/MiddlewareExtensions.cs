@@ -2,7 +2,7 @@
 
 namespace Api.Infrastructure.Extensions;
 
-public static class MiddlewareExtensions
+internal static class MiddlewareExtensions
 {
     public static IApplicationBuilder UseGlobalExceptionHandling(this WebApplication app)
     {

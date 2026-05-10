@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>ecd77eda-ad34-4a9f-ac77-f546aa8bfff6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,15 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Context\" />
-    <Folder Include="Extentions\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Options\" />
-    <Folder Include="Repositiories\" />
-    <Folder Include="Seeders\" />
-    <Folder Include="Specifications\" />
-    <Folder Include="UnitOfWork\" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
   </ItemGroup>
 
 </Project>

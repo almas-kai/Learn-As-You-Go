@@ -1,23 +1,29 @@
 using Api.Infrastructure.Extensions;
+using DataAccess.Extensions;
 
 namespace Api;
 
-public static class Program
+internal static class Program
 {
-    public static void Main(string[] args)
+    public async static Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddDefaultCors(builder.Configuration);
 
+        builder.Services.AddAuthentication();
+
         builder.Services.AddAuthorization();
 
         builder.Services.AddOpenApi();
+
+        builder.Services.AddDataAccess(builder.Configuration);
 
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
         {
+            await app.Services.InitializeDatabaseAsync();
             app.MapOpenApi();
         }
 
@@ -25,11 +31,11 @@ public static class Program
         app.UseGlobalExceptionHandling();
         app.UseRouting();
 
-        app.UseCors();  
+        app.UseCors();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.Run();
+        await app.RunAsync();
     }
 }

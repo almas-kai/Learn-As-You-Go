@@ -5,7 +5,7 @@ using Application.Exceptions;
 
 namespace Api.Infrastructure.Helpers;
 
-public static class ApiExceptionHandler
+internal static class ApiExceptionHandler
 {
     private static readonly Dictionary<Type, Func<Exception, ApiExceptionHandlerResponse>> Handlers =
     new()
