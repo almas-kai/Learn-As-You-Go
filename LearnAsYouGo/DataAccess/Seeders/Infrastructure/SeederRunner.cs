@@ -2,7 +2,7 @@ using DataAccess.Contexts;
 
 namespace DataAccess.Seeders.Infrastructure;
 
-internal class SeederRunner
+public class SeederRunner
 {
     private readonly IEnumerable<IDataSeeder> _seeders;
     public SeederRunner(IEnumerable<IDataSeeder> seeders)

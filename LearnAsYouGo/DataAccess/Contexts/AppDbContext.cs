@@ -1,34 +1,37 @@
 using DataAccess.Seeders.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccess.Contexts;
 
-internal class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<IdentityUser>
 {
-    private readonly SeederRunner _seederRunner;
     public AppDbContext(
-        DbContextOptions<AppDbContext> options,
-        SeederRunner seederRunner
+        DbContextOptions<AppDbContext> options
     ) : base(options)
-    {
-        _seederRunner = seederRunner;
-    }
+    { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
             .UseAsyncSeeding(async (context, _, cancellationToken) =>
             {
-                await _seederRunner.RunAsync((AppDbContext)context, cancellationToken);
+                var seederRunner = context.GetService<SeederRunner>();
+                await seederRunner.RunAsync((AppDbContext)context, cancellationToken);
             })
             .UseSeeding((context, _) =>
             {
-                _seederRunner.Run((AppDbContext)context);
+                var seederRunner = context.GetService<SeederRunner>();
+                seederRunner.Run((AppDbContext)context);
             });
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 }

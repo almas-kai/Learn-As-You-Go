@@ -1,5 +1,9 @@
 using Api.Infrastructure.Extensions;
+using DataAccess.Contexts;
 using DataAccess.Extensions;
+using DataAccess.Seeders.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using Scalar.AspNetCore;
 
 namespace Api;
 
@@ -16,15 +20,21 @@ internal static class Program
         builder.Services.AddAuthorization();
 
         builder.Services.AddOpenApi();
-
+        
         builder.Services.AddDataAccess(builder.Configuration);
 
+        builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+            .AddEntityFrameworkStores<AppDbContext>();
+
         var app = builder.Build();
+
+        app.MapIdentityApi<IdentityUser>();
 
         if (app.Environment.IsDevelopment())
         {
             await app.Services.InitializeDatabaseAsync();
             app.MapOpenApi();
+            app.MapScalarApiReference();
         }
 
         app.UseHttpsRedirection();
