@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +13,7 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatTooltip
   ],
   templateUrl: './dynamic-button.html',
-  styleUrl: './dynamic-button.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './dynamic-button.css'
 })
 export class DynamicButton {
   public isExtended = input.required<boolean>();

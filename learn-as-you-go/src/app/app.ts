@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SUPPORTED_LANGUAGES } from '@public/i18n/supported-languages';
@@ -11,8 +11,7 @@ import { SideBar } from '@layout-components/side-bar/side-bar';
     SideBar
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './app.scss'
 })
 export class App {
   private readonly translateService = inject(TranslateService);
