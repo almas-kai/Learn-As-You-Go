@@ -16,10 +16,10 @@ import { MatTooltip } from '@angular/material/tooltip';
   styleUrl: './dynamic-button.css'
 })
 export class DynamicButton {
-  public isExtended = input.required<boolean>();
-  public iconName = input.required<string>();
-  public labelKey = input.required<string>();
-  public activate = output<void>();
+  public readonly isExtended = input.required<boolean>();
+  public readonly iconName = input.required<string>();
+  public readonly labelKey = input.required<string>();
+  public readonly activate = output<void>();
 
   protected onClick(): void {
     this.activate.emit();
