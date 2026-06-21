@@ -19,7 +19,7 @@ import { DynamicButton } from './local-components/dynamic-button/dynamic-button'
   }
 })
 export class SideBar {
-  protected isExpanded = signal(false);
+  protected readonly isExpanded = signal(false);
 
   protected toggleMenu(): void {
     this.isExpanded.update(prevValue => !prevValue);
