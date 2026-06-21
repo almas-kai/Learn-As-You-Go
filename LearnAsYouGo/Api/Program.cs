@@ -1,5 +1,6 @@
 using Api.Infrastructure.Extensions;
 using DataAccess.Extensions;
+using Scalar.AspNetCore;
 
 namespace Api;
 
@@ -25,6 +26,7 @@ internal static class Program
         {
             await app.Services.InitializeDatabaseAsync();
             app.MapOpenApi();
+            app.MapScalarApiReference();
         }
 
         app.UseHttpsRedirection();
