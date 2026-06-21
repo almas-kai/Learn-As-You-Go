@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
@@ -14,7 +14,6 @@ import { DynamicButton } from './local-components/dynamic-button/dynamic-button'
   ],
   templateUrl: './side-bar.html',
   styleUrl: './side-bar.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.expanded]': 'isExpanded()'
   }
