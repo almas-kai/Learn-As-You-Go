@@ -14,15 +14,15 @@ import { SideBar } from '@layout-components/side-bar/side-bar';
   styleUrl: './app.scss'
 })
 export class App {
-  private readonly translateService = inject(TranslateService);
+  private readonly _translateService = inject(TranslateService);
 
   constructor() {
     const languageCodes = Object.keys(SUPPORTED_LANGUAGES);
-    this.translateService.addLangs(languageCodes);
+    this._translateService.addLangs(languageCodes);
 
-    const browserLanguage = this.translateService.getBrowserLang() ?? '';
+    const browserLanguage = this._translateService.getBrowserLang() ?? '';
     const actualLanguage = languageCodes.includes(browserLanguage) ? browserLanguage : 'en';
 
-    this.translateService.use(actualLanguage);
+    this._translateService.use(actualLanguage);
   }
 }
