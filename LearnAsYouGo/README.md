@@ -19,3 +19,7 @@ Secrets are set at the project level. We should set it inside of the `Api` layer
 Use `dotnet user-secrets init` (if `.csproj` does not contain user-secret id section), then `dotnet user-secrets set "ConnectionStrings:Default" "Host=localhost;Database=LearnAsYouGo;Username=postgres;Password=YourPassword"`.
 
 Please note that the name `ConnectionStrings:Default` is used later.
+
+## OpenAPI
+
+API documentation: `https://localhost:{port}/scalar/v1`.
