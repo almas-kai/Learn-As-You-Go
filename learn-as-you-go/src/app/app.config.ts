@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatIconRegistry } from '@angular/material/icon';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const registry = inject(MatIconRegistry);
       registry.setDefaultFontSetClass('material-symbols-outlined');
-    })
+    }),
+    provideHttpClient()
   ]
 };

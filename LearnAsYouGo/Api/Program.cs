@@ -1,7 +1,6 @@
 using Api.Infrastructure.Extensions;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
-using DataAccess.Seeders.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
 
