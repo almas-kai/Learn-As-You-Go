@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\Validators\**" />
+    <Content Remove="Infrastructure\Validators\**" />
+    <EmbeddedResource Remove="Infrastructure\Validators\**" />
+    <None Remove="Infrastructure\Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.16.4" />
   </ItemGroup>
@@ -20,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Infrastructure\Validators\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using NettoRetail.Infrastructure.Options;
+using Api.Infrastructure.Options;
 
 namespace Api.Infrastructure.Extensions;
 
