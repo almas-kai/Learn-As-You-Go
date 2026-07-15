@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DataAccess.Contexts;
 using DataAccess.Seeders.Infrastructure;
+using Application.Abstractions.Data;
+using DataAccess.Repositories;
+using DataAccess.UnitOfWork;
 
 namespace DataAccess.Extensions;
 
@@ -13,6 +16,9 @@ public static class DataAccessExtensions
         ConfigureConnectionString(services, configuration);
 
         SeederRegistration.RegisterSeeders(services);
+
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IUnitOfWork, DataAccess.UnitOfWork.UnitOfWork>();
 
         return services;
     }
