@@ -20,7 +20,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\Helpers\" />
+    <Folder Include="Infrastructure\Middlewares\" />
     <Folder Include="Infrastructure\Validators\" />
+    <Folder Include="Models\Error\" />
   </ItemGroup>
 
 </Project>
