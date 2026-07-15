@@ -1,4 +1,5 @@
 using Api.Infrastructure.Extensions;
+using Application;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
 using DataAccess.Seeders.Infrastructure;
@@ -22,6 +23,7 @@ internal static class Program
         builder.Services.AddOpenApi();
         
         builder.Services.AddDataAccess(builder.Configuration);
+        builder.Services.AddApplication();
 
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
             .AddEntityFrameworkStores<AppDbContext>();
