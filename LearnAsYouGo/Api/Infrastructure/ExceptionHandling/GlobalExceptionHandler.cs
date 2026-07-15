@@ -20,6 +20,7 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
             BadRequestException e => CreateProblemDetails(StatusCodes.Status400BadRequest, "Bad Request", e.Message),
             UnauthorizedException e => CreateProblemDetails(StatusCodes.Status401Unauthorized, "Unauthorized", e.Message),
             ForbiddenException e => CreateProblemDetails(StatusCodes.Status403Forbidden, "Forbidden", e.Message),
+            FluentValidation.ValidationException e => CreateFluentValidationProblemDetails(e),
             System.ComponentModel.DataAnnotations.ValidationException e => CreateValidationProblemDetails(e),
             _ => CreateProblemDetails(StatusCodes.Status500InternalServerError, "Internal Server Error", "Unexpected error happened on the server while trying to process the request.")
         };
@@ -40,6 +41,24 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
             Title = title,
             Detail = detail,
             Type = $"https://httpstatuses.com/{statusCode}"
+        };
+    }
+
+    private static ProblemDetails CreateFluentValidationProblemDetails(FluentValidation.ValidationException ex)
+    {
+        var errors = ex.Errors
+            .GroupBy(x => x.PropertyName)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(x => x.ErrorMessage).ToArray()
+            );
+
+        return new ValidationProblemDetails(errors)
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Title = "Validation failed",
+            Detail = "One or more validation errors occurred.",
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1"
         };
     }
 
