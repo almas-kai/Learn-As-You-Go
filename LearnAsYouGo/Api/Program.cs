@@ -1,6 +1,8 @@
 using Api.Infrastructure.Extensions;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
+using Infrastructure.Extensions;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
 
@@ -22,8 +24,14 @@ internal static class Program
         
         builder.Services.AddDataAccess(builder.Configuration);
 
+        builder.Services.AddInfrastructure(builder.Configuration);
+
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-            .AddEntityFrameworkStores<AppDbContext>();
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
+        builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityEmailSender>();
 
         var app = builder.Build();
 

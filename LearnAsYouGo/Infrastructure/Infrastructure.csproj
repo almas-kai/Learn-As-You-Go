@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,15 +8,19 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.8" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="EmailTemplates\" />
     <Folder Include="Extentions\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
     <Folder Include="Models\" />
-    <Folder Include="Options\" />
   </ItemGroup>
 
 </Project>
