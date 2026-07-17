@@ -1,3 +1,4 @@
+using Api.Infrastructure.ExceptionHandling;
 using Api.Infrastructure.Extensions;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
@@ -26,6 +27,9 @@ internal static class Program
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
             .AddEntityFrameworkStores<AppDbContext>();
 
+        builder.Services.AddProblemDetails();
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
         var app = builder.Build();
 
         app.MapIdentityApi<IdentityUser>();
@@ -38,7 +42,7 @@ internal static class Program
         }
 
         app.UseHttpsRedirection();
-        app.UseGlobalExceptionHandling();
+        app.UseExceptionHandler();
         app.UseRouting();
 
         app.UseCors();

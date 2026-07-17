@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
   </ItemGroup>
@@ -20,7 +21,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\Helpers\" />
+    <Folder Include="Infrastructure\Middlewares\" />
     <Folder Include="Infrastructure\Validators\" />
+    <Folder Include="Models\Error\" />
   </ItemGroup>
 
 </Project>
