@@ -15,7 +15,7 @@ public static class InfrastructureExtensions
         services.Configure<SmtpSettings>(
             configuration.GetSection(SmtpSettings.SectionName));
 
-        services.AddScoped<IEmailService, SmtpEmailService>();
+        services.AddTransient<IEmailService, SmtpEmailService>();
 
         return services;
     }
