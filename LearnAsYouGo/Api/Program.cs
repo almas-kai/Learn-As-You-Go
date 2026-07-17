@@ -55,7 +55,6 @@ internal static class Program
 
         app.UseHttpsRedirection();
         app.UseSerilogRequestLogging();
-        app.UseGlobalExceptionHandling();
         app.UseExceptionHandler();
         app.UseRouting();
 
