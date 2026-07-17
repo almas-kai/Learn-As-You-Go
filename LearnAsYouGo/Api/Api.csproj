@@ -5,18 +5,26 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>3a1cae4f-7f25-4679-88cc-44c0bb4ce788</UserSecretsId>
-    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+    <IncludeOpenAPIAnalyzers>false</IncludeOpenAPIAnalyzers>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Infrastructure\Validators\**" />
+    <Content Remove="Infrastructure\Validators\**" />
+    <EmbeddedResource Remove="Infrastructure\Validators\**" />
+    <None Remove="Infrastructure\Validators\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.16.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

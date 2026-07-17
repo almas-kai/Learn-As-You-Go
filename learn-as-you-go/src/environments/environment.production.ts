@@ -1,3 +1,5 @@
+import { Endpoints } from "./endpoints";
+
 /**
  * Configs for production environment.
  * 
@@ -5,5 +7,8 @@
 */
 export const environment = {
   production: true,
-  apiUrl: 'http://real-api-endpoint'
+  api: {
+    domain: 'paste-real-domain-here',
+    ...Endpoints
+  }
 } as const;

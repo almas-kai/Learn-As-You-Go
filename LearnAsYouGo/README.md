@@ -12,7 +12,23 @@ The project is used to create a backend-end side of the webapp. To learn more ab
 
 `Infrastructure` is for external concerns, such as: file storage, email services, external APIs, Logging, implementations of interfaces from application layer.
 
-## Connection strings
+## Local Development Setup
+
+### Docker (Database + SMTP)
+
+Start the required services with Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+This starts:
+- **PostgreSQL 17** on port `5432` — persistent via named volume `postgres_data`
+- **Mailpit** — SMTP on port `1025`, Web UI at `http://localhost:8025`
+
+All emails sent by the application are captured by Mailpit and visible in its Web UI. No emails leave your machine.
+
+### Connection strings
 
 Secrets are set at the project level. We should set it inside of the `Api` layer, because this layer is responsible for startup. It reads the configs at startup.
 
@@ -20,6 +36,29 @@ Use `dotnet user-secrets init` (if `.csproj` does not contain user-secret id sec
 
 Please note that the name `ConnectionStrings:Default` is used later.
 
+## Roles
+
+The app defines two roles (see `Shared/Constants/AppRoles.cs`):
+
+| Role | Description |
+|---|---|
+| `Admin` | Full access. Seeded automatically on first run. |
+| `User` | Standard user. Assigned on registration. |
+
+**Default admin credentials** (dev only, configured via `SeedSettings` in `appsettings.Development.json`):
+- Email: `admin@learnasyougo.com`
+- Password: `Admin123!`
+
+## Email Service
+
+Implemented via **MailKit** (`Infrastructure/Services/SmtpEmailService.cs`). Configured through `SmtpSettings` in `appsettings.Development.json`.
+
+Identity email flows supported:
+- Email confirmation on registration
+- Password reset link
+- Password reset code
+
 ## OpenAPI
 
 API documentation: `https://localhost:{port}/scalar/v1`.
+
