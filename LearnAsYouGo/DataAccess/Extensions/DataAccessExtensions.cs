@@ -6,7 +6,6 @@ using DataAccess.Seeders;
 using DataAccess.Seeders.Infrastructure;
 using Application.Abstractions.Data;
 using DataAccess.Repositories;
-using DataAccess.UnitOfWork;
 
 namespace DataAccess.Extensions;
 
@@ -19,7 +18,7 @@ public static class DataAccessExtensions
         SeederRegistration.RegisterSeeders(services);
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        services.AddScoped<IUnitOfWork, DataAccess.UnitOfWork.UnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
 
         return services;
     }
