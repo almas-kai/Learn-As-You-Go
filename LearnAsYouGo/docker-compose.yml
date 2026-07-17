@@ -3,15 +3,15 @@ services:
     image: postgres:17-alpine
     container_name: learnasyougo-postgres
     environment:
-      POSTGRES_DB: LearnAsYouGo
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: YourPassword
+      POSTGRES_DB: LearnAsYouGoMainDB
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d LearnAsYouGo"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d LearnAsYouGoMainDB"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,15 +20,15 @@ services:
     image: postgres:17-alpine
     container_name: learnasyougo-postgres-logs
     environment:
-      POSTGRES_DB: LearnAsYouGoLogs
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: YourPassword
+      POSTGRES_DB: LearnAsYouGoLogsDB
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
       - postgres_logs_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d LearnAsYouGoLogs"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d LearnAsYouGoLogsDB"]
       interval: 10s
       timeout: 5s
       retries: 5

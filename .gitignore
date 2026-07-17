@@ -1,6 +1,7 @@
 # ==========================
 # ASP.NET Core / .NET
 # ==========================
+LearnAsYouGo/.env
 LearnAsYouGo/*/bin/
 LearnAsYouGo/*/obj/
 LearnAsYouGo/*.user
