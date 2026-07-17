@@ -1,8 +1,11 @@
 using Api.Infrastructure.Extensions;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
+using Infrastructure.Extensions;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
+using Serilog;
 
 namespace Api;
 
@@ -11,6 +14,8 @@ internal static class Program
     public async static Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.AddStructuredLogging();
 
         builder.Services.AddDefaultCors(builder.Configuration);
 
@@ -22,8 +27,14 @@ internal static class Program
         
         builder.Services.AddDataAccess(builder.Configuration);
 
+        builder.Services.AddInfrastructure(builder.Configuration);
+
         builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-            .AddEntityFrameworkStores<AppDbContext>();
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
+        builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityEmailSender>();
 
         var app = builder.Build();
 
@@ -37,6 +48,7 @@ internal static class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseSerilogRequestLogging();
         app.UseGlobalExceptionHandling();
         app.UseRouting();
 
