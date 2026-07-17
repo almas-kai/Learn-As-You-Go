@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.16.4" />
   </ItemGroup>
@@ -28,6 +29,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\Helpers\" />
+    <Folder Include="Infrastructure\Middlewares\" />
+    <Folder Include="Infrastructure\Validators\" />
+    <Folder Include="Models\Error\" />
   </ItemGroup>
 
 </Project>

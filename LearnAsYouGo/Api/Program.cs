@@ -1,4 +1,6 @@
+using Api.Infrastructure.ExceptionHandling;
 using Api.Infrastructure.Extensions;
+using Application;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
 using Infrastructure.Extensions;
@@ -26,6 +28,7 @@ internal static class Program
         builder.Services.AddOpenApi();
         
         builder.Services.AddDataAccess(builder.Configuration);
+        builder.Services.AddApplication();
 
         builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -35,6 +38,9 @@ internal static class Program
             .AddDefaultTokenProviders();
 
         builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityEmailSender>();
+
+        builder.Services.AddProblemDetails();
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
         var app = builder.Build();
 
@@ -50,6 +56,7 @@ internal static class Program
         app.UseHttpsRedirection();
         app.UseSerilogRequestLogging();
         app.UseGlobalExceptionHandling();
+        app.UseExceptionHandler();
         app.UseRouting();
 
         app.UseCors();
