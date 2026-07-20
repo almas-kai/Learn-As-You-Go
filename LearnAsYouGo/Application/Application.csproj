@@ -7,14 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Compile Remove="Utilities\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Services\**" />
+    <None Remove="Utilities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="CQRS\" />
-    <Folder Include="Services\" />
     <Folder Include="Enums\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>

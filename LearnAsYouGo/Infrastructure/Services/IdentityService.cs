@@ -3,6 +3,7 @@ using Application.Abstractions.Identity;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
+using Shared.Constants;
 
 namespace Infrastructure.Services;
 
@@ -74,6 +75,23 @@ public class IdentityService : IIdentityService
             return (false, "Error confirming your email.");
         }
 
+        if (await _userManager.IsInRoleAsync(user, AppRoles.Guest))
+        {
+            await _userManager.RemoveFromRoleAsync(user, AppRoles.Guest);
+            await _userManager.AddToRoleAsync(user, AppRoles.User);
+        }
+
         return (true, null);
+    }
+
+    public async Task<(string? UserId, bool EmailConfirmed)> GetUserStatusByEmailAsync(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return (null, false);
+        }
+
+        return (user.Id, user.EmailConfirmed);
     }
 }

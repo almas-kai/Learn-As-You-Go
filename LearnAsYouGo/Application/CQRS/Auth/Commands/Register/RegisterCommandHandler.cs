@@ -39,7 +39,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
             request.Country,
             request.DateOfBirth,
             request.PhoneNumber,
-            AppRoles.User);
+            AppRoles.Guest);
 
         if (!succeeded)
         {

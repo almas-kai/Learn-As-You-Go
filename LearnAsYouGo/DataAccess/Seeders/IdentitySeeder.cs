@@ -22,7 +22,7 @@ public static class IdentitySeeder
 
     private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager, ILogger logger)
     {
-        string[] roles = [AppRoles.Admin, AppRoles.User];
+        string[] roles = [AppRoles.Admin, AppRoles.User, AppRoles.Guest];
 
         foreach (string role in roles)
         {
@@ -35,7 +35,14 @@ public static class IdentitySeeder
                 {
                     logger.LogInformation("Role '{Role}' created successfully.", role);
 
-                    string permission = role == AppRoles.Admin ? AppClaims.Permissions.All : AppClaims.Permissions.Basic;
+                    string permission = role switch
+                    {
+                        AppRoles.Admin => AppClaims.Permissions.All,
+                        AppRoles.User => AppClaims.Permissions.Basic,
+                        AppRoles.Guest => AppClaims.Permissions.None,
+                        _ => AppClaims.Permissions.None
+                    };
+                    
                     var claimResult = await roleManager.AddClaimAsync(identityRole, new System.Security.Claims.Claim(AppClaims.Permission, permission));
 
                     if (claimResult.Succeeded)
