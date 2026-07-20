@@ -24,11 +24,13 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
     {
-        var callbackUrlFormat = Url.Action(
+        var baseUrl = Url.Action(
             action: nameof(ConfirmEmail),
             controller: "Auth",
-            values: new { userId = "{0}", code = "{1}" },
+            values: null,
             protocol: Request.Scheme);
+        
+        var callbackUrlFormat = $"{baseUrl}?userId={{0}}&code={{1}}";
 
         if (callbackUrlFormat == null)
         {
@@ -65,11 +67,13 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> ResendConfirmationEmail([FromBody] string email)
     {
-        var callbackUrlFormat = Url.Action(
+        var baseUrl = Url.Action(
             action: nameof(ConfirmEmail),
             controller: "Auth",
-            values: new { userId = "{0}", code = "{1}" },
+            values: null,
             protocol: Request.Scheme);
+        
+        var callbackUrlFormat = $"{baseUrl}?userId={{0}}&code={{1}}";
 
         if (callbackUrlFormat == null)
         {

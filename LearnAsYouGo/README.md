@@ -38,12 +38,13 @@ Please note that the name `ConnectionStrings:Default` is used later.
 
 ## Roles
 
-The app defines two roles (see `Shared/Constants/AppRoles.cs`):
+The app defines three roles (see `Shared/Constants/AppRoles.cs`):
 
 | Role | Description |
 |---|---|
 | `Admin` | Full access. Seeded automatically on first run. |
-| `User` | Standard user. Assigned on registration. |
+| `User` | Standard user. Assigned after email confirmation. |
+| `Guest` | Restricted access. Assigned on registration before email confirmation. |
 
 **Default admin credentials** (dev only, configured via `SeedSettings` in `appsettings.Development.json`):
 - Email: `admin@learnasyougo.com`
@@ -58,7 +59,11 @@ Identity email flows supported:
 - Password reset link
 - Password reset code
 
-## OpenAPI
+## Local Development Interfaces
 
-API documentation: `https://localhost:{port}/scalar/v1`.
+When running the application locally, you can access the following useful interfaces:
 
+- **API Documentation (Scalar)**: `http://localhost:5147/scalar/v1` (or `https://localhost:7195/scalar/v1`)
+  *Here you can view, test, and interact with all API endpoints.*
+- **Local Email Inbox (Mailpit)**: `http://localhost:8025`
+  *Since the app runs with Mailpit via Docker, all outgoing emails (registration confirmations, etc.) are intercepted and displayed here. No real emails are sent!*
