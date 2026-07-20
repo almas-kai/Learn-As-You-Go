@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ public static class IdentitySeeder
     public static async Task SeedAsync(IServiceProvider serviceProvider)
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
         var configuration = serviceProvider.GetRequiredService<IConfiguration>();
         var logger = serviceProvider.GetRequiredService<ILogger<RoleManager<IdentityRole>>>();
 
@@ -27,11 +28,24 @@ public static class IdentitySeeder
         {
             if (!await roleManager.RoleExistsAsync(role))
             {
-                var result = await roleManager.CreateAsync(new IdentityRole(role));
+                var identityRole = new IdentityRole(role);
+                var result = await roleManager.CreateAsync(identityRole);
 
                 if (result.Succeeded)
                 {
                     logger.LogInformation("Role '{Role}' created successfully.", role);
+
+                    string permission = role == AppRoles.Admin ? AppClaims.Permissions.All : AppClaims.Permissions.Basic;
+                    var claimResult = await roleManager.AddClaimAsync(identityRole, new System.Security.Claims.Claim(AppClaims.Permission, permission));
+
+                    if (claimResult.Succeeded)
+                    {
+                        logger.LogInformation("Assigned claim '{ClaimType}: {ClaimValue}' to role '{Role}'.", AppClaims.Permission, permission, role);
+                    }
+                    else
+                    {
+                        logger.LogError("Failed to assign claim to role '{Role}': {Errors}", role, string.Join(", ", claimResult.Errors.Select(e => e.Description)));
+                    }
                 }
                 else
                 {
@@ -43,7 +57,7 @@ public static class IdentitySeeder
     }
 
     private static async Task SeedAdminUserAsync(
-        UserManager<IdentityUser> userManager,
+        UserManager<AppUser> userManager,
         IConfiguration configuration,
         ILogger logger)
     {
@@ -52,7 +66,7 @@ public static class IdentitySeeder
         string adminPassword = configuration["SeedSettings:AdminPassword"]
             ?? throw new InvalidOperationException("SeedSettings:AdminPassword is not configured.");
 
-        IdentityUser? existingAdmin = await userManager.FindByEmailAsync(adminEmail);
+        AppUser? existingAdmin = await userManager.FindByEmailAsync(adminEmail);
 
         if (existingAdmin is not null)
         {
@@ -60,11 +74,13 @@ public static class IdentitySeeder
             return;
         }
 
-        var adminUser = new IdentityUser
+        var adminUser = new AppUser
         {
             UserName = adminEmail,
             Email = adminEmail,
-            EmailConfirmed = true
+            EmailConfirmed = true,
+            FirstName = "Admin",
+            LastName = "User"
         };
 
         var createResult = await userManager.CreateAsync(adminUser, adminPassword);

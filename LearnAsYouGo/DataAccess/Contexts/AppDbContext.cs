@@ -1,3 +1,4 @@
+using Domain.Entities;
 using DataAccess.Seeders.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace DataAccess.Contexts;
 
-public class AppDbContext : IdentityDbContext<IdentityUser>
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(
         DbContextOptions<AppDbContext> options
