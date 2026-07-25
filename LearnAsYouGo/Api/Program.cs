@@ -41,8 +41,6 @@ internal static class Program
 
         var app = builder.Build();
 
-
-
         if (app.Environment.IsDevelopment())
         {
             await app.Services.InitializeDatabaseAsync();
