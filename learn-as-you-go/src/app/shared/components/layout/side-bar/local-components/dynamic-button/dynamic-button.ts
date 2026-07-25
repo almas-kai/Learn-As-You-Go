@@ -13,7 +13,7 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatTooltip
   ],
   templateUrl: './dynamic-button.html',
-  styleUrl: './dynamic-button.css'
+  styleUrl: './dynamic-button.scss'
 })
 export class DynamicButton {
   public readonly isExtended = input.required<boolean>();
