@@ -1,10 +1,8 @@
 using Domain.Entities;
 using DataAccess.Seeders.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Configuration;
 
 namespace DataAccess.Contexts;
 

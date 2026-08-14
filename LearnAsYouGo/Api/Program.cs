@@ -20,15 +20,18 @@ internal static class Program
 
         builder.AddStructuredLogging();
 
+        builder.Services.AddRouting((options) =>
+        {
+            options.LowercaseUrls = true;
+        });
+
         builder.Services.AddDefaultCors(builder.Configuration);
-
-
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
         
         builder.Services.AddDataAccess(builder.Configuration);
-        builder.Services.AddApplication();
+        builder.Services.AddApplication(builder.Configuration);
 
         builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -52,11 +55,8 @@ internal static class Program
         app.UseSerilogRequestLogging();
         app.UseExceptionHandler();
         app.UseRouting();
-        
-        app.MapControllers();
-
         app.UseCors();
-
+        app.MapControllers();
         app.UseAuthentication();
         app.UseAuthorization();
 

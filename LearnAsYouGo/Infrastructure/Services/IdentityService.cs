@@ -17,7 +17,7 @@ public class IdentityService : IIdentityService
     }
 
     public async Task<(bool Succeeded, IEnumerable<string> Errors, string UserId)> CreateUserAsync(
-        string email, string password, string firstName, string lastName, string? country, DateTime? dateOfBirth, string? phoneNumber, string role)
+        string email, string password, string role)
     {
         var existingUser = await _userManager.FindByEmailAsync(email);
         if (existingUser != null)
@@ -28,12 +28,7 @@ public class IdentityService : IIdentityService
         var user = new AppUser 
         { 
             UserName = email, 
-            Email = email,
-            FirstName = firstName,
-            LastName = lastName,
-            Country = country,
-            DateOfBirth = dateOfBirth,
-            PhoneNumber = phoneNumber
+            Email = email
         };
         var result = await _userManager.CreateAsync(user, password);
 

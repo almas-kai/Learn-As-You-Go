@@ -14,6 +14,11 @@ The project is used to create a backend-end side of the webapp. To learn more ab
 
 ## Local Development Setup
 
+### MediatR License Key
+License key for community edition of the MediatR shall be registered in user-secrets via this key: `LuckyPennySoftware:LicenseKey`. For how to set up user-secrets please look at Connection strings section below.
+
+You can get the key from the `https://luckypennysoftware.com/account` site, it is free.
+
 ### Docker (Database + SMTP)
 
 Start the required services with Docker Compose:

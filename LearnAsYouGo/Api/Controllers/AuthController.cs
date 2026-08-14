@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-[Authorize] // Secure by default
+[Route("[controller]")] // TODO: Checkout naming conventions.
+[Authorize] // TODO: Can i configure it by default globally?
 public class AuthController : ControllerBase
 {
     private readonly ISender _sender;
@@ -38,13 +38,8 @@ public class AuthController : ControllerBase
         }
 
         var command = new RegisterCommand(
-            request.FirstName,
-            request.LastName,
             request.Email, 
             request.Password,
-            request.Country,
-            request.DateOfBirth,
-            request.PhoneNumber,
             callbackUrlFormat);
         
         await _sender.Send(command);

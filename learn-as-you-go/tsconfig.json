@@ -26,6 +26,9 @@
       ],
       "@environments/*": [
         "./src/environments/*"
+      ],
+      "@core/*": [
+        "./src/app/core/*"
       ]
     }
   },

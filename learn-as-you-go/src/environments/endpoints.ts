@@ -1,5 +1,5 @@
 export const Endpoints = {
   account: {
-    register: '/register',
+    register: '/auth/register',
   }
 } as const;

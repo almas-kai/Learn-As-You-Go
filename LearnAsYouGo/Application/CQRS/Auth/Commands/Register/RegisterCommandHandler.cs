@@ -7,13 +7,8 @@ using Shared.Constants;
 namespace Application.CQRS.Auth.Commands.Register;
 
 public record RegisterCommand(
-    string FirstName,
-    string LastName,
     string Email, 
-    string Password, 
-    string? Country,
-    DateTime? DateOfBirth,
-    string? PhoneNumber,
+    string Password,
     string ConfirmationUrlFormat) : IRequest;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
@@ -34,11 +29,6 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
         var (succeeded, errors, userId) = await _identityService.CreateUserAsync(
             request.Email, 
             request.Password,
-            request.FirstName,
-            request.LastName,
-            request.Country,
-            request.DateOfBirth,
-            request.PhoneNumber,
             AppRoles.Guest);
 
         if (!succeeded)
