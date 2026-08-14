@@ -1,0 +1,29 @@
+<mat-dialog-content>
+  <h3 mat-dialog-title>
+    {{ 'authentication.register.title' | translate }}
+  </h3>
+  <form [formRoot]="registerForm" [id]="formId">
+    <mat-form-field>
+      <mat-label>
+        {{ 'shared.email.label' | translate }}
+      </mat-label>
+      <input matInput [formField]="registerForm.email" [placeholder]="'shared.email.placeholder' | translate" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>
+        {{ 'shared.password.label' | translate }}
+      </mat-label>
+      <input matInput [formField]="registerForm.password" [placeholder]="'shared.password.placeholder' | translate" />
+      <mat-icon matSuffix></mat-icon>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton="text" (click)="cancel()">
+    {{ 'shared.generic-control.cancel' | translate }}
+  </button>
+  <button matButton="elevated" type="submit" [attr.form]="formId">
+    {{ 'authentication.register.register-btn' | translate }}
+  </button>
+</mat-dialog-actions>

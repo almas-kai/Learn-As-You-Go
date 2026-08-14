@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.dialog-overrides((
+    container-max-width: var(--width-mat-dialog-container-max),
+    container-min-width: var(--width-mat-dialog-container-min),
+    headline-padding: var(--padding-mat-dialog-title)
+  ));
+}

@@ -1,0 +1,19 @@
+html {
+  // Paddings
+  --padding-small: 0.5rem;
+  --padding-mat-dialog-title: 0 0 var(--padding-small) 0;
+
+  // Widths
+  --width-mat-dialog-container-max: 90vw;
+  --width-mat-dialog-container-min: 20vw;
+  --width-mat-form-field: 100%;
+  --width-side-bar-expanded: 25vw;
+  --width-dynamic-btn: 100%;
+
+  // Heights
+  --height-main-content: 100vh;
+  --height-side-bar: 100%;
+
+  // Gaps
+  --gap-small: 0.5rem;
+}
