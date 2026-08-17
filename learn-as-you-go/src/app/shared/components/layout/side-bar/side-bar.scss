@@ -2,21 +2,21 @@
   background-color: var(--mat-sys-secondary-container);
 
   &.expanded {
-    width: 25vw;
+    width: var(--width-side-bar-expanded);
   }
 }
 
 .main-navigation {
-  height: 100%;
+  height: var(--height-side-bar);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.5vh;
+  padding: var(--padding-small);
 
   & .top-nav,
   & .bottom-nav {
     display: flex;
     flex-direction: column;
-    gap: 0.5vh;
+    gap: var(--gap-small);
   }
 }

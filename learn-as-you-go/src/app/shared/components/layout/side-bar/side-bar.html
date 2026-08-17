@@ -20,10 +20,12 @@
   </div>
 
   <div class="bottom-nav">
+    <!-- TODO: Show sign off icon and label when a user is already signed in. -->
     <app-dynamic-button
       [isExtended]="isMenuExpanded"
       iconName="account_circle"
-      labelKey="side-bar.account-on"
+      labelKey="side-bar.sign-in"
+      (activate)="authenticate()"
     />
     <app-dynamic-button
       [isExtended]="isMenuExpanded"

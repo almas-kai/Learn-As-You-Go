@@ -3,6 +3,7 @@ using Api.Infrastructure.Extensions;
 using Application;
 using DataAccess.Contexts;
 using DataAccess.Extensions;
+using Domain.Entities;
 using Infrastructure.Extensions;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
@@ -19,32 +20,29 @@ internal static class Program
 
         builder.AddStructuredLogging();
 
+        builder.Services.AddRouting((options) =>
+        {
+            options.LowercaseUrls = true;
+        });
+
         builder.Services.AddDefaultCors(builder.Configuration);
 
-        builder.Services.AddAuthentication();
-
-        builder.Services.AddAuthorization();
-
+        builder.Services.AddControllers();
         builder.Services.AddOpenApi();
         
         builder.Services.AddDataAccess(builder.Configuration);
-        builder.Services.AddApplication();
+        builder.Services.AddApplication(builder.Configuration);
 
         builder.Services.AddInfrastructure(builder.Configuration);
 
-        builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
+        builder.Services.AddCustomAuthentication(builder.Configuration);
 
-        builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityEmailSender>();
+        builder.Services.AddTransient<IEmailSender<AppUser>, IdentityEmailSender>();
 
         builder.Services.AddProblemDetails();
         builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
         var app = builder.Build();
-
-        app.MapIdentityApi<IdentityUser>();
 
         if (app.Environment.IsDevelopment())
         {
@@ -57,9 +55,8 @@ internal static class Program
         app.UseSerilogRequestLogging();
         app.UseExceptionHandler();
         app.UseRouting();
-
         app.UseCors();
-
+        app.MapControllers();
         app.UseAuthentication();
         app.UseAuthorization();
 

@@ -1,4 +1,5 @@
 using Application.Abstractions.Email;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
@@ -9,7 +10,7 @@ namespace Infrastructure.Services;
 /// to our application-level IEmailService. This enables Identity features like
 /// email confirmation, password reset links, etc.
 /// </summary>
-public sealed class IdentityEmailSender : IEmailSender<IdentityUser>
+public sealed class IdentityEmailSender : IEmailSender<AppUser>
 {
     private readonly IEmailService _emailService;
 
@@ -18,7 +19,7 @@ public sealed class IdentityEmailSender : IEmailSender<IdentityUser>
         _emailService = emailService;
     }
 
-    public Task SendConfirmationLinkAsync(IdentityUser user, string email, string confirmationLink) =>
+    public Task SendConfirmationLinkAsync(AppUser user, string email, string confirmationLink) =>
         _emailService.SendEmailAsync(new EmailMessage(
             To: email,
             Subject: "Confirm your email",
@@ -31,7 +32,7 @@ public sealed class IdentityEmailSender : IEmailSender<IdentityUser>
             PlainTextBody: $"Confirm your email by visiting: {confirmationLink}"
         ));
 
-    public Task SendPasswordResetLinkAsync(IdentityUser user, string email, string resetLink) =>
+    public Task SendPasswordResetLinkAsync(AppUser user, string email, string resetLink) =>
         _emailService.SendEmailAsync(new EmailMessage(
             To: email,
             Subject: "Reset your password",
@@ -44,7 +45,7 @@ public sealed class IdentityEmailSender : IEmailSender<IdentityUser>
             PlainTextBody: $"Reset your password by visiting: {resetLink}"
         ));
 
-    public Task SendPasswordResetCodeAsync(IdentityUser user, string email, string resetCode) =>
+    public Task SendPasswordResetCodeAsync(AppUser user, string email, string resetCode) =>
         _emailService.SendEmailAsync(new EmailMessage(
             To: email,
             Subject: "Your password reset code",

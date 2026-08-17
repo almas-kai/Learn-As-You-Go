@@ -2,7 +2,6 @@
   display: flex;
 }
 
-#side-bar,
 #main {
-  height: 100vh;
+  height: var(--height-main-content);
 }

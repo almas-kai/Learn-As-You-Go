@@ -15,17 +15,20 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@layout-components/*": [
-        "./src/app/shared/components/layout/*"
+      "@shared/*": [
+        "./src/app/shared/*"
       ],
-      "@home-feature/*": [
-        "./src/app/features/home/*"
+      "@features/*": [
+        "./src/app/features/*"
       ],
       "@public/*": [
         "./public/*"
       ],
       "@environments/*": [
         "./src/environments/*"
+      ],
+      "@core/*": [
+        "./src/app/core/*"
       ]
     }
   },
