@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegisterModal } from './register-modal';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe(RegisterModal.name, () => {
   let component: RegisterModal;
@@ -8,7 +9,18 @@ describe(RegisterModal.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterModal]
+      imports: [
+        RegisterModal,
+        TranslateModule.forRoot()
+      ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: () => {}
+          }
+        }
+      ]
     })
     .compileComponents();
 
