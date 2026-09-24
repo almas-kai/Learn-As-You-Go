@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatAnchor } from "@angular/material/button";
@@ -9,6 +9,7 @@ import { RegisterAccountModel } from '@core/account-manager/types';
 import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { AccountManager } from '@core/account-manager/account-manager';
 import { firstValueFrom } from 'rxjs';
+import { getFirstError } from '@shared/utils/getFirstError/getFirstError';
 
 @Component({
   selector: 'app-register-modal',
@@ -36,6 +37,8 @@ export class RegisterModal {
   });
 
   protected readonly formId = `register-modal-form-id-${RegisterModal._counter++}`;
+  protected readonly emailFirstError = computed(() => getFirstError(this.registerForm.email));
+  protected readonly passwordFirstError = computed(() => getFirstError(this.registerForm.password));
 
   protected readonly registerForm = form(this.formModel, (schemaPath) => {
     // TODO: Add password validation using global service registration like in .NET.

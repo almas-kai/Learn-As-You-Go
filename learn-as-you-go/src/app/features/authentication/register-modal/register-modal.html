@@ -7,15 +7,30 @@
       <mat-label>
         {{ 'shared.email.label' | translate }}
       </mat-label>
-      <input matInput [formField]="registerForm.email" [placeholder]="'shared.email.placeholder' | translate" />
+      <input
+        matInput
+        [formField]="registerForm.email"
+        [placeholder]="'shared.email.placeholder' | translate"
+        autocomplete="email"
+        type="email"/>
+      <mat-error>
+        {{ emailFirstError() | translate }}
+      </mat-error>
     </mat-form-field>
-
     <mat-form-field>
       <mat-label>
         {{ 'shared.password.label' | translate }}
       </mat-label>
-      <input matInput [formField]="registerForm.password" [placeholder]="'shared.password.placeholder' | translate" />
+      <input
+        matInput
+        [formField]="registerForm.password"
+        [placeholder]="'shared.password.placeholder' | translate"
+        autocomplete="new-password"
+        type="password"/>
       <mat-icon matSuffix></mat-icon>
+      <mat-error>
+        {{ passwordFirstError() | translate }}
+      </mat-error>
     </mat-form-field>
   </form>
 </mat-dialog-content>
