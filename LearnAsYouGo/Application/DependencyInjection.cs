@@ -1,6 +1,7 @@
 using System.Reflection;
 using Application.Behaviors;
 using FluentValidation;
+using Mapster;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,8 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         var assembly = Assembly.GetExecutingAssembly();
+
+        TypeAdapterConfig.GlobalSettings.Scan(assembly);
 
         services.AddMediatR(config =>
         {
