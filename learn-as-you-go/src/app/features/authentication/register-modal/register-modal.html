@@ -14,7 +14,7 @@
         autocomplete="email"
         type="email"/>
       <mat-error>
-        {{ emailFirstError() | translate }}
+        {{ emailFirstError().message | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -29,7 +29,7 @@
         type="password"/>
       <mat-icon matSuffix></mat-icon>
       <mat-error>
-        {{ passwordFirstError() | translate }}
+        {{ passwordFirstError().message | translate:passwordFirstError().params}}
       </mat-error>
     </mat-form-field>
   </form>
