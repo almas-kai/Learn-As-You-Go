@@ -4,7 +4,8 @@
     "outDir": "./out-tsc/app"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "public/**/*.json"
   ],
   "exclude": [
     "src/**/*.spec.ts"

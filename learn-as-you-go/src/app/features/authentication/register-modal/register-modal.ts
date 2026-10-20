@@ -10,6 +10,8 @@ import { email, form, FormField, FormRoot, required } from '@angular/forms/signa
 import { AccountManager } from '@core/account-manager/account-manager';
 import { firstValueFrom } from 'rxjs';
 import { getFirstError } from '@shared/utils/getFirstError/getFirstError';
+import { TranslatableError } from '@shared/utils/getFirstError/types';
+import { password } from '@shared/utils/validators/password/password';
 
 @Component({
   selector: 'app-register-modal',
@@ -37,14 +39,14 @@ export class RegisterModal {
   });
 
   protected readonly formId = `register-modal-form-id-${RegisterModal._counter++}`;
-  protected readonly emailFirstError = computed(() => getFirstError(this.registerForm.email));
-  protected readonly passwordFirstError = computed(() => getFirstError(this.registerForm.password));
+  protected readonly emailFirstError = computed<TranslatableError>(() => getFirstError(this.registerForm.email));
+  protected readonly passwordFirstError = computed<TranslatableError>(() => getFirstError(this.registerForm.password));
 
   protected readonly registerForm = form(this.formModel, (schemaPath) => {
-    // TODO: Add password validation using global service registration like in .NET.
     required(schemaPath.email, { message: 'shared.email.errors.required' });
     email(schemaPath.email, { message: 'shared.email.errors.format' });
     required(schemaPath.password, { message: 'shared.password.errors.required' });
+    password(schemaPath.password);
   }, {
     submission: {
       action: async (data) => {

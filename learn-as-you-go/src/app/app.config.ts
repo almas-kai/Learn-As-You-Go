@@ -11,13 +11,14 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    // TODO: Store compiled translations, so that we don't load translation compiler at runtime.
     provideTranslateService(
       {
         fallbackLang: 'en',
         loader: provideTranslateHttpLoader(
           {
             prefix: '/i18n/',
-            suffix: '.json'
+            suffix: '.json',
           }
         )
       }
