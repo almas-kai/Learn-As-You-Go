@@ -1,4 +1,5 @@
 using Api.Models.Requests;
+using Api.Models.Response;
 using Application.CQRS.Auth.Commands.ConfirmEmail;
 using Application.CQRS.Auth.Commands.Register;
 using Application.CQRS.Auth.Commands.ResendConfirmationEmail;
@@ -9,20 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")] // TODO: Checkout naming conventions.
+[Route("api/[controller]")]
 [Authorize] // TODO: Can i configure it by default globally?
-public class AuthController : ControllerBase
+public class AuthController(ISender sender) : ControllerBase
 {
-    private readonly ISender _sender;
-
-    public AuthController(ISender sender)
-    {
-        _sender = sender;
-    }
+    private readonly ISender _sender = sender;
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
+    public async Task<ActionResult<MessageResponse>> Register([FromBody] RegisterUserRequest request)
     {
         var baseUrl = Url.Action(
             action: nameof(ConfirmEmail),
@@ -44,12 +40,12 @@ public class AuthController : ControllerBase
         
         await _sender.Send(command);
 
-        return Ok(new { Message = "User registered successfully. Please check your email to confirm your account." });
+        return Ok(new MessageResponse("User registered successfully. Please check your email to confirm your account."));
     }
 
     [HttpGet("confirm-email")]
     [AllowAnonymous]
-    public async Task<IActionResult> ConfirmEmail(string userId, string code)
+    public async Task<ActionResult<string>> ConfirmEmail(string userId, string code)
     {
         var command = new ConfirmEmailCommand(userId, code);
         
@@ -60,7 +56,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("resend-confirmation-email")]
     [AllowAnonymous]
-    public async Task<IActionResult> ResendConfirmationEmail([FromBody] string email)
+    public async Task<ActionResult<MessageResponse>> ResendConfirmationEmail([FromBody] string email)
     {
         var baseUrl = Url.Action(
             action: nameof(ConfirmEmail),
@@ -79,6 +75,6 @@ public class AuthController : ControllerBase
         
         await _sender.Send(command);
 
-        return Ok(new { message = "If your email is registered and unconfirmed, a new confirmation link has been sent." });
+        return Ok(new MessageResponse("If your email is registered and unconfirmed, a new confirmation link has been sent."));
     }
 }

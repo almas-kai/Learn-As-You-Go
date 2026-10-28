@@ -1,4 +1,5 @@
 using Application.CQRS.Users.Queries.GetUsers;
+using Application.Models.Responses.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,19 +7,14 @@ namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController : ControllerBase
+public class UsersController(ISender sender) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public UsersController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly ISender _sender = sender;
 
     [HttpGet]
-    public async Task<IActionResult> GetUsers()
+    public async Task<ActionResult<List<UserResponse>>> GetUsers()
     {
-        var users = await _mediator.Send(new GetUsersQuery());
+        var users = await _sender.Send(new GetUsersQuery());
         return Ok(users);
     }
 }

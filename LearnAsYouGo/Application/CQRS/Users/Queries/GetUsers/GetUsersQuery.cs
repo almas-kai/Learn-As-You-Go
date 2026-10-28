@@ -12,10 +12,8 @@ public class GetUsersQueryHandler(IRepository<AppUser> userRepository) : IReques
 {
     public async Task<List<UserResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
-        // Here we read directly using IRepository which operates via EF Core
         var users = await userRepository.ListAsync(cancellationToken);
 
         return users.Adapt<List<UserResponse>>();
     }
 }
-
